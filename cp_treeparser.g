@@ -1,3 +1,8 @@
+/*
+Author: Matteo Romanello
+email: matteo.romanello@gmail.com
+*/
+
 tree grammar cp_treeparser;
 
 options {
