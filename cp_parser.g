@@ -63,6 +63,7 @@ editor:
 ^(EDITOR LITERAL)
 ;
 
+// TODO: change virgola and punto (name-wise)
 lev_sep:(VIRGOLA|PUNTO);
 
 level:
