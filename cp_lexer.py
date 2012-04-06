@@ -1,4 +1,4 @@
-# $ANTLR 3.1.2 cp_lexer.g 2011-07-07 15:22:16
+# $ANTLR 3.1.2 cp_lexer.g 2012-04-06 11:26:08
 
 import sys
 from antlr3 import *
@@ -49,10 +49,10 @@ class cp_lexer(Lexer):
             _type = INT
             _channel = DEFAULT_CHANNEL
 
-            # cp_lexer.g:8:5: ( ( '0' .. '9' )+ )
-            # cp_lexer.g:8:7: ( '0' .. '9' )+
+            # cp_lexer.g:13:5: ( ( '0' .. '9' )+ )
+            # cp_lexer.g:13:7: ( '0' .. '9' )+
             pass 
-            # cp_lexer.g:8:7: ( '0' .. '9' )+
+            # cp_lexer.g:13:7: ( '0' .. '9' )+
             cnt1 = 0
             while True: #loop1
                 alt1 = 2
@@ -102,8 +102,8 @@ class cp_lexer(Lexer):
             _type = PUNTO
             _channel = DEFAULT_CHANNEL
 
-            # cp_lexer.g:10:7: ( DOT )
-            # cp_lexer.g:10:9: DOT
+            # cp_lexer.g:15:7: ( DOT )
+            # cp_lexer.g:15:9: DOT
             pass 
             self.mDOT()
 
@@ -127,8 +127,8 @@ class cp_lexer(Lexer):
             _type = VIRGOLA
             _channel = DEFAULT_CHANNEL
 
-            # cp_lexer.g:11:9: ( COMMA )
-            # cp_lexer.g:11:11: COMMA
+            # cp_lexer.g:16:9: ( COMMA )
+            # cp_lexer.g:16:11: COMMA
             pass 
             self.mCOMMA()
 
@@ -152,8 +152,8 @@ class cp_lexer(Lexer):
             _type = HYPHEN
             _channel = DEFAULT_CHANNEL
 
-            # cp_lexer.g:12:7: ( HYPHEN_fr )
-            # cp_lexer.g:12:9: HYPHEN_fr
+            # cp_lexer.g:17:7: ( HYPHEN_fr )
+            # cp_lexer.g:17:9: HYPHEN_fr
             pass 
             self.mHYPHEN_fr()
 
@@ -177,8 +177,8 @@ class cp_lexer(Lexer):
             _type = SEMICOL
             _channel = DEFAULT_CHANNEL
 
-            # cp_lexer.g:13:8: ( ';' )
-            # cp_lexer.g:13:9: ';'
+            # cp_lexer.g:18:8: ( ';' )
+            # cp_lexer.g:18:9: ';'
             pass 
             self.match(59)
 
@@ -199,8 +199,8 @@ class cp_lexer(Lexer):
     def mHYPHEN_fr(self, ):
 
         try:
-            # cp_lexer.g:15:2: ( '-' )
-            # cp_lexer.g:15:4: '-'
+            # cp_lexer.g:19:20: ( '-' )
+            # cp_lexer.g:19:22: '-'
             pass 
             self.match(45)
 
@@ -219,8 +219,8 @@ class cp_lexer(Lexer):
     def mDOT(self, ):
 
         try:
-            # cp_lexer.g:16:14: ( '.' )
-            # cp_lexer.g:16:16: '.'
+            # cp_lexer.g:20:14: ( '.' )
+            # cp_lexer.g:20:16: '.'
             pass 
             self.match(46)
 
@@ -239,8 +239,8 @@ class cp_lexer(Lexer):
     def mCOMMA(self, ):
 
         try:
-            # cp_lexer.g:17:16: ( ',' )
-            # cp_lexer.g:17:18: ','
+            # cp_lexer.g:21:16: ( ',' )
+            # cp_lexer.g:21:18: ','
             pass 
             self.match(44)
 
@@ -259,8 +259,8 @@ class cp_lexer(Lexer):
     def mCHAR(self, ):
 
         try:
-            # cp_lexer.g:18:15: ( ( 'A' .. 'Z' | 'a' .. 'z' | '\\u00E0' .. '\\u00FF' ) )
-            # cp_lexer.g:18:17: ( 'A' .. 'Z' | 'a' .. 'z' | '\\u00E0' .. '\\u00FF' )
+            # cp_lexer.g:22:15: ( ( 'A' .. 'Z' | 'a' .. 'z' | '\\u00E0' .. '\\u00FF' ) )
+            # cp_lexer.g:22:17: ( 'A' .. 'Z' | 'a' .. 'z' | '\\u00E0' .. '\\u00FF' )
             pass 
             if (65 <= self.input.LA(1) <= 90) or (97 <= self.input.LA(1) <= 122) or (224 <= self.input.LA(1) <= 255):
                 self.input.consume()
@@ -288,10 +288,10 @@ class cp_lexer(Lexer):
     def mPUNCT(self, ):
 
         try:
-            # cp_lexer.g:20:2: ( ( DOT | COMMA | HYPHEN_fr )+ )
-            # cp_lexer.g:20:4: ( DOT | COMMA | HYPHEN_fr )+
+            # cp_lexer.g:23:16: ( ( DOT | COMMA | HYPHEN_fr )+ )
+            # cp_lexer.g:23:18: ( DOT | COMMA | HYPHEN_fr )+
             pass 
-            # cp_lexer.g:20:4: ( DOT | COMMA | HYPHEN_fr )+
+            # cp_lexer.g:23:18: ( DOT | COMMA | HYPHEN_fr )+
             cnt2 = 0
             while True: #loop2
                 alt2 = 2
@@ -348,10 +348,10 @@ class cp_lexer(Lexer):
             _type = WS
             _channel = DEFAULT_CHANNEL
 
-            # cp_lexer.g:22:3: ( ( ' ' | '\\t' | '\\r' | '\\n' )+ )
-            # cp_lexer.g:22:5: ( ' ' | '\\t' | '\\r' | '\\n' )+
+            # cp_lexer.g:26:3: ( ( ' ' | '\\t' | '\\r' | '\\n' )+ )
+            # cp_lexer.g:26:5: ( ' ' | '\\t' | '\\r' | '\\n' )+
             pass 
-            # cp_lexer.g:22:5: ( ' ' | '\\t' | '\\r' | '\\n' )+
+            # cp_lexer.g:26:5: ( ' ' | '\\t' | '\\r' | '\\n' )+
             cnt3 = 0
             while True: #loop3
                 alt3 = 2
@@ -410,10 +410,10 @@ class cp_lexer(Lexer):
     def mR_C_BR(self, ):
 
         try:
-            # cp_lexer.g:23:16: ( ( ')' | ')' COMMA ) )
-            # cp_lexer.g:23:17: ( ')' | ')' COMMA )
+            # cp_lexer.g:27:16: ( ( ')' | ')' COMMA ) )
+            # cp_lexer.g:27:17: ( ')' | ')' COMMA )
             pass 
-            # cp_lexer.g:23:17: ( ')' | ')' COMMA )
+            # cp_lexer.g:27:17: ( ')' | ')' COMMA )
             alt4 = 2
             LA4_0 = self.input.LA(1)
 
@@ -433,13 +433,13 @@ class cp_lexer(Lexer):
                 raise nvae
 
             if alt4 == 1:
-                # cp_lexer.g:23:18: ')'
+                # cp_lexer.g:27:18: ')'
                 pass 
                 self.match(41)
 
 
             elif alt4 == 2:
-                # cp_lexer.g:23:22: ')' COMMA
+                # cp_lexer.g:27:22: ')' COMMA
                 pass 
                 self.match(41)
                 self.mCOMMA()
@@ -465,10 +465,10 @@ class cp_lexer(Lexer):
             _type = BRACKETS
             _channel = DEFAULT_CHANNEL
 
-            # cp_lexer.g:24:9: ( ( '(' | R_C_BR )+ )
-            # cp_lexer.g:24:11: ( '(' | R_C_BR )+
+            # cp_lexer.g:28:9: ( ( '(' | R_C_BR )+ )
+            # cp_lexer.g:28:11: ( '(' | R_C_BR )+
             pass 
-            # cp_lexer.g:24:11: ( '(' | R_C_BR )+
+            # cp_lexer.g:28:11: ( '(' | R_C_BR )+
             cnt5 = 0
             while True: #loop5
                 alt5 = 3
@@ -481,13 +481,13 @@ class cp_lexer(Lexer):
 
 
                 if alt5 == 1:
-                    # cp_lexer.g:24:13: '('
+                    # cp_lexer.g:28:13: '('
                     pass 
                     self.match(40)
 
 
                 elif alt5 == 2:
-                    # cp_lexer.g:24:19: R_C_BR
+                    # cp_lexer.g:28:19: R_C_BR
                     pass 
                     self.mR_C_BR()
 
@@ -529,13 +529,13 @@ class cp_lexer(Lexer):
             _type = LITERAL
             _channel = DEFAULT_CHANNEL
 
-            # cp_lexer.g:26:9: ( ( ( CHAR )+ ( PUNCT )* ( CHAR )* ) )
-            # cp_lexer.g:26:11: ( ( CHAR )+ ( PUNCT )* ( CHAR )* )
+            # cp_lexer.g:29:9: ( ( ( CHAR )+ ( PUNCT )* ( CHAR )* ) )
+            # cp_lexer.g:29:11: ( ( CHAR )+ ( PUNCT )* ( CHAR )* )
             pass 
-            # cp_lexer.g:26:11: ( ( CHAR )+ ( PUNCT )* ( CHAR )* )
-            # cp_lexer.g:26:12: ( CHAR )+ ( PUNCT )* ( CHAR )*
+            # cp_lexer.g:29:11: ( ( CHAR )+ ( PUNCT )* ( CHAR )* )
+            # cp_lexer.g:29:12: ( CHAR )+ ( PUNCT )* ( CHAR )*
             pass 
-            # cp_lexer.g:26:12: ( CHAR )+
+            # cp_lexer.g:29:12: ( CHAR )+
             cnt6 = 0
             while True: #loop6
                 alt6 = 2
@@ -569,7 +569,7 @@ class cp_lexer(Lexer):
                 cnt6 += 1
 
 
-            # cp_lexer.g:26:18: ( PUNCT )*
+            # cp_lexer.g:29:18: ( PUNCT )*
             while True: #loop7
                 alt7 = 2
                 LA7_0 = self.input.LA(1)
@@ -588,7 +588,7 @@ class cp_lexer(Lexer):
                     break #loop7
 
 
-            # cp_lexer.g:26:25: ( CHAR )*
+            # cp_lexer.g:29:25: ( CHAR )*
             while True: #loop8
                 alt8 = 2
                 LA8_0 = self.input.LA(1)
@@ -706,8 +706,8 @@ class cp_lexer(Lexer):
 
     # $ANTLR start "synpred14_cp_lexer"
     def synpred14_cp_lexer_fragment(self, ):
-        # cp_lexer.g:26:12: ( CHAR )
-        # cp_lexer.g:26:12: CHAR
+        # cp_lexer.g:29:12: ( CHAR )
+        # cp_lexer.g:29:12: CHAR
         pass 
         self.mCHAR()
 

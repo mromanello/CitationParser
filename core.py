@@ -6,6 +6,11 @@ import logging, antlr3,sys
 from cp_lexer import cp_lexer
 from cp_parser import cp_parser
 from cp_treeparser import cp_treeparser
+try:
+	import simplejson as sj
+except ImportError:
+	import json as sj
+
 
 class citation_parser:
 	"""
@@ -35,14 +40,14 @@ class citation_parser:
 					nodes.setTokenStream(tokenstream)
 					tp = cp_treeparser(nodes)
 					tp.doc()
-					import simplejson as sj
+					self.logger.debug(tp.refs)
 					result = sj.dumps(str(tp.refs))
 					return result
 				except Exception as e:
-					self.logger.error("%s"%Error)
+					self.logger.error("%s"%e)
 					self.logger.error("there was a problem w/ the TreeParser: exiting")
 			except Exception as e:
-				self.logger.error("%s"%Error)
+				self.logger.error("%s"%e)
 				self.logger.error("there was a problem with the parser: exiting")
 		except Exception as e:
 			self.logger.error("%s"%e)

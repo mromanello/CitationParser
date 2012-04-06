@@ -1,4 +1,4 @@
-# $ANTLR 3.1.2 cp_treeparser.g 2011-07-07 15:22:17
+# $ANTLR 3.1.2 cp_treeparser.g 2012-04-06 11:26:09
 
 import sys
 from antlr3 import *
@@ -82,15 +82,15 @@ class cp_treeparser(TreeParser):
 
 
     # $ANTLR start "doc"
-    # cp_treeparser.g:19:1: doc : ( citation )+ ;
+    # cp_treeparser.g:24:1: doc : ( citation )+ ;
     def doc(self, ):
 
         try:
             try:
-                # cp_treeparser.g:19:5: ( ( citation )+ )
-                # cp_treeparser.g:19:7: ( citation )+
+                # cp_treeparser.g:24:5: ( ( citation )+ )
+                # cp_treeparser.g:24:7: ( citation )+
                 pass 
-                # cp_treeparser.g:19:7: ( citation )+
+                # cp_treeparser.g:24:7: ( citation )+
                 cnt1 = 0
                 while True: #loop1
                     alt1 = 2
@@ -101,9 +101,9 @@ class cp_treeparser(TreeParser):
 
 
                     if alt1 == 1:
-                        # cp_treeparser.g:19:7: citation
+                        # cp_treeparser.g:24:7: citation
                         pass 
-                        self._state.following.append(self.FOLLOW_citation_in_doc53)
+                        self._state.following.append(self.FOLLOW_citation_in_doc56)
                         self.citation()
 
                         self._state.following.pop()
@@ -136,22 +136,22 @@ class cp_treeparser(TreeParser):
 
 
     # $ANTLR start "citation"
-    # cp_treeparser.g:22:1: citation : ^( CITATION ref ( ref )* ) ;
+    # cp_treeparser.g:27:1: citation : ^( CITATION ref ( ref )* ) ;
     def citation(self, ):
 
         try:
             try:
-                # cp_treeparser.g:26:2: ( ^( CITATION ref ( ref )* ) )
-                # cp_treeparser.g:27:1: ^( CITATION ref ( ref )* )
+                # cp_treeparser.g:31:2: ( ^( CITATION ref ( ref )* ) )
+                # cp_treeparser.g:32:1: ^( CITATION ref ( ref )* )
                 pass 
-                self.match(self.input, CITATION, self.FOLLOW_CITATION_in_citation67)
+                self.match(self.input, CITATION, self.FOLLOW_CITATION_in_citation70)
 
                 self.match(self.input, DOWN, None)
-                self._state.following.append(self.FOLLOW_ref_in_citation69)
+                self._state.following.append(self.FOLLOW_ref_in_citation72)
                 self.ref()
 
                 self._state.following.pop()
-                # cp_treeparser.g:27:16: ( ref )*
+                # cp_treeparser.g:32:16: ( ref )*
                 while True: #loop2
                     alt2 = 2
                     LA2_0 = self.input.LA(1)
@@ -161,9 +161,9 @@ class cp_treeparser(TreeParser):
 
 
                     if alt2 == 1:
-                        # cp_treeparser.g:27:16: ref
+                        # cp_treeparser.g:32:16: ref
                         pass 
-                        self._state.following.append(self.FOLLOW_ref_in_citation71)
+                        self._state.following.append(self.FOLLOW_ref_in_citation74)
                         self.ref()
 
                         self._state.following.pop()
@@ -198,7 +198,7 @@ class cp_treeparser(TreeParser):
 
 
     # $ANTLR start "ref"
-    # cp_treeparser.g:30:1: ref : ^( REF ( work )* scp ( editor )* ) ;
+    # cp_treeparser.g:35:1: ref : ^( REF ( work )* scp ( editor )* ) ;
     def ref(self, ):
 
               
@@ -210,13 +210,13 @@ class cp_treeparser(TreeParser):
 
         try:
             try:
-                # cp_treeparser.g:44:1: ( ^( REF ( work )* scp ( editor )* ) )
-                # cp_treeparser.g:45:1: ^( REF ( work )* scp ( editor )* )
+                # cp_treeparser.g:51:1: ( ^( REF ( work )* scp ( editor )* ) )
+                # cp_treeparser.g:52:1: ^( REF ( work )* scp ( editor )* )
                 pass 
-                self.match(self.input, REF, self.FOLLOW_REF_in_ref94)
+                self.match(self.input, REF, self.FOLLOW_REF_in_ref97)
 
                 self.match(self.input, DOWN, None)
-                # cp_treeparser.g:45:7: ( work )*
+                # cp_treeparser.g:52:7: ( work )*
                 while True: #loop3
                     alt3 = 2
                     LA3_0 = self.input.LA(1)
@@ -226,9 +226,9 @@ class cp_treeparser(TreeParser):
 
 
                     if alt3 == 1:
-                        # cp_treeparser.g:45:7: work
+                        # cp_treeparser.g:52:7: work
                         pass 
-                        self._state.following.append(self.FOLLOW_work_in_ref96)
+                        self._state.following.append(self.FOLLOW_work_in_ref99)
                         self.work()
 
                         self._state.following.pop()
@@ -238,11 +238,11 @@ class cp_treeparser(TreeParser):
                         break #loop3
 
 
-                self._state.following.append(self.FOLLOW_scp_in_ref99)
+                self._state.following.append(self.FOLLOW_scp_in_ref102)
                 self.scp()
 
                 self._state.following.pop()
-                # cp_treeparser.g:45:17: ( editor )*
+                # cp_treeparser.g:52:17: ( editor )*
                 while True: #loop4
                     alt4 = 2
                     LA4_0 = self.input.LA(1)
@@ -252,9 +252,9 @@ class cp_treeparser(TreeParser):
 
 
                     if alt4 == 1:
-                        # cp_treeparser.g:45:17: editor
+                        # cp_treeparser.g:52:17: editor
                         pass 
-                        self._state.following.append(self.FOLLOW_editor_in_ref101)
+                        self._state.following.append(self.FOLLOW_editor_in_ref104)
                         self.editor()
 
                         self._state.following.pop()
@@ -271,8 +271,10 @@ class cp_treeparser(TreeParser):
 
                 #action start
                        
-                if(not self.curr_ref.has_key('work')):
+                if(not self.curr_ref.has_key('work') and self.prev_ref.has_key('work')):
                 	self.curr_ref["work"]=self.prev_ref["work"]
+                elif(not self.prev_ref.has_key('work')):
+                	self.curr_ref["work"]=None
                 self.refs.append(dict(self.curr_ref))
 
                 #action end
@@ -290,7 +292,7 @@ class cp_treeparser(TreeParser):
 
 
     # $ANTLR start "work"
-    # cp_treeparser.g:48:1: work : ^( WORK (x+= LITERAL )+ ) ;
+    # cp_treeparser.g:55:1: work : ^( WORK (x+= LITERAL )+ ) ;
     def work(self, ):
 
         x = None
@@ -298,13 +300,13 @@ class cp_treeparser(TreeParser):
 
         try:
             try:
-                # cp_treeparser.g:48:5: ( ^( WORK (x+= LITERAL )+ ) )
-                # cp_treeparser.g:49:1: ^( WORK (x+= LITERAL )+ )
+                # cp_treeparser.g:55:5: ( ^( WORK (x+= LITERAL )+ ) )
+                # cp_treeparser.g:56:1: ^( WORK (x+= LITERAL )+ )
                 pass 
-                self.match(self.input, WORK, self.FOLLOW_WORK_in_work112)
+                self.match(self.input, WORK, self.FOLLOW_WORK_in_work115)
 
                 self.match(self.input, DOWN, None)
-                # cp_treeparser.g:49:9: (x+= LITERAL )+
+                # cp_treeparser.g:56:9: (x+= LITERAL )+
                 cnt5 = 0
                 while True: #loop5
                     alt5 = 2
@@ -315,9 +317,9 @@ class cp_treeparser(TreeParser):
 
 
                     if alt5 == 1:
-                        # cp_treeparser.g:49:9: x+= LITERAL
+                        # cp_treeparser.g:56:9: x+= LITERAL
                         pass 
-                        x=self.match(self.input, LITERAL, self.FOLLOW_LITERAL_in_work116)
+                        x=self.match(self.input, LITERAL, self.FOLLOW_LITERAL_in_work119)
                         if list_x is None:
                             list_x = []
                         list_x.append(x)
@@ -359,18 +361,18 @@ class cp_treeparser(TreeParser):
 
 
     # $ANTLR start "editor"
-    # cp_treeparser.g:56:1: editor : ^( EDITOR LITERAL ) ;
+    # cp_treeparser.g:63:1: editor : ^( EDITOR LITERAL ) ;
     def editor(self, ):
 
         try:
             try:
-                # cp_treeparser.g:56:7: ( ^( EDITOR LITERAL ) )
-                # cp_treeparser.g:57:1: ^( EDITOR LITERAL )
+                # cp_treeparser.g:63:7: ( ^( EDITOR LITERAL ) )
+                # cp_treeparser.g:64:1: ^( EDITOR LITERAL )
                 pass 
-                self.match(self.input, EDITOR, self.FOLLOW_EDITOR_in_editor129)
+                self.match(self.input, EDITOR, self.FOLLOW_EDITOR_in_editor132)
 
                 self.match(self.input, DOWN, None)
-                self.match(self.input, LITERAL, self.FOLLOW_LITERAL_in_editor131)
+                self.match(self.input, LITERAL, self.FOLLOW_LITERAL_in_editor134)
 
                 self.match(self.input, UP, None)
 
@@ -390,7 +392,7 @@ class cp_treeparser(TreeParser):
 
 
     # $ANTLR start "level"
-    # cp_treeparser.g:60:1: level[typ] returns [List levs] : ^( LEVEL lev+= INT ) ( ^( LEVEL lev1+= INT ) )* ;
+    # cp_treeparser.g:67:1: level[typ] returns [List levs] : ^( LEVEL lev+= INT ) ( ^( LEVEL lev1+= INT ) )* ;
     def level(self, typ):
 
         levs = None
@@ -406,20 +408,20 @@ class cp_treeparser(TreeParser):
 
         try:
             try:
-                # cp_treeparser.g:71:1: ( ^( LEVEL lev+= INT ) ( ^( LEVEL lev1+= INT ) )* )
-                # cp_treeparser.g:72:1: ^( LEVEL lev+= INT ) ( ^( LEVEL lev1+= INT ) )*
+                # cp_treeparser.g:78:1: ( ^( LEVEL lev+= INT ) ( ^( LEVEL lev1+= INT ) )* )
+                # cp_treeparser.g:79:1: ^( LEVEL lev+= INT ) ( ^( LEVEL lev1+= INT ) )*
                 pass 
-                self.match(self.input, LEVEL, self.FOLLOW_LEVEL_in_level155)
+                self.match(self.input, LEVEL, self.FOLLOW_LEVEL_in_level158)
 
                 self.match(self.input, DOWN, None)
-                lev=self.match(self.input, INT, self.FOLLOW_INT_in_level159)
+                lev=self.match(self.input, INT, self.FOLLOW_INT_in_level162)
                 if list_lev is None:
                     list_lev = []
                 list_lev.append(lev)
 
 
                 self.match(self.input, UP, None)
-                # cp_treeparser.g:72:19: ( ^( LEVEL lev1+= INT ) )*
+                # cp_treeparser.g:79:19: ( ^( LEVEL lev1+= INT ) )*
                 while True: #loop6
                     alt6 = 2
                     LA6_0 = self.input.LA(1)
@@ -429,12 +431,12 @@ class cp_treeparser(TreeParser):
 
 
                     if alt6 == 1:
-                        # cp_treeparser.g:72:20: ^( LEVEL lev1+= INT )
+                        # cp_treeparser.g:79:20: ^( LEVEL lev1+= INT )
                         pass 
-                        self.match(self.input, LEVEL, self.FOLLOW_LEVEL_in_level164)
+                        self.match(self.input, LEVEL, self.FOLLOW_LEVEL_in_level167)
 
                         self.match(self.input, DOWN, None)
-                        lev1=self.match(self.input, INT, self.FOLLOW_INT_in_level168)
+                        lev1=self.match(self.input, INT, self.FOLLOW_INT_in_level171)
                         if list_lev1 is None:
                             list_lev1 = []
                         list_lev1.append(lev1)
@@ -489,7 +491,7 @@ class cp_treeparser(TreeParser):
 
 
     # $ANTLR start "scp"
-    # cp_treeparser.g:87:1: scp : ( scp_single | scp_range ) ;
+    # cp_treeparser.g:94:1: scp : ( scp_single | scp_range ) ;
     def scp(self, ):
 
               
@@ -498,10 +500,10 @@ class cp_treeparser(TreeParser):
 
         try:
             try:
-                # cp_treeparser.g:93:1: ( ( scp_single | scp_range ) )
-                # cp_treeparser.g:93:3: ( scp_single | scp_range )
+                # cp_treeparser.g:100:1: ( ( scp_single | scp_range ) )
+                # cp_treeparser.g:100:3: ( scp_single | scp_range )
                 pass 
-                # cp_treeparser.g:93:3: ( scp_single | scp_range )
+                # cp_treeparser.g:100:3: ( scp_single | scp_range )
                 alt7 = 2
                 LA7_0 = self.input.LA(1)
 
@@ -515,18 +517,18 @@ class cp_treeparser(TreeParser):
                     raise nvae
 
                 if alt7 == 1:
-                    # cp_treeparser.g:93:4: scp_single
+                    # cp_treeparser.g:100:4: scp_single
                     pass 
-                    self._state.following.append(self.FOLLOW_scp_single_in_scp190)
+                    self._state.following.append(self.FOLLOW_scp_single_in_scp193)
                     self.scp_single()
 
                     self._state.following.pop()
 
 
                 elif alt7 == 2:
-                    # cp_treeparser.g:93:15: scp_range
+                    # cp_treeparser.g:100:15: scp_range
                     pass 
-                    self._state.following.append(self.FOLLOW_scp_range_in_scp192)
+                    self._state.following.append(self.FOLLOW_scp_range_in_scp195)
                     self.scp_range()
 
                     self._state.following.pop()
@@ -550,7 +552,7 @@ class cp_treeparser(TreeParser):
 
 
     # $ANTLR start "scp_single"
-    # cp_treeparser.g:96:1: scp_single : ^( SCOPE_S level[\"single\"] ) ;
+    # cp_treeparser.g:103:1: scp_single : ^( SCOPE_S level[\"single\"] ) ;
     def scp_single(self, ):
 
               
@@ -558,13 +560,13 @@ class cp_treeparser(TreeParser):
 
         try:
             try:
-                # cp_treeparser.g:100:1: ( ^( SCOPE_S level[\"single\"] ) )
-                # cp_treeparser.g:101:1: ^( SCOPE_S level[\"single\"] )
+                # cp_treeparser.g:107:1: ( ^( SCOPE_S level[\"single\"] ) )
+                # cp_treeparser.g:108:1: ^( SCOPE_S level[\"single\"] )
                 pass 
-                self.match(self.input, SCOPE_S, self.FOLLOW_SCOPE_S_in_scp_single207)
+                self.match(self.input, SCOPE_S, self.FOLLOW_SCOPE_S_in_scp_single210)
 
                 self.match(self.input, DOWN, None)
-                self._state.following.append(self.FOLLOW_level_in_scp_single209)
+                self._state.following.append(self.FOLLOW_level_in_scp_single212)
                 self.level("single")
 
                 self._state.following.pop()
@@ -587,7 +589,7 @@ class cp_treeparser(TreeParser):
 
 
     # $ANTLR start "scp_range"
-    # cp_treeparser.g:104:1: scp_range : ^( SCOPE_R ^( START level[\"start\"] ) ^( END level[\"end\"] ) ) ;
+    # cp_treeparser.g:111:1: scp_range : ^( SCOPE_R ^( START level[\"start\"] ) ^( END level[\"end\"] ) ) ;
     def scp_range(self, ):
 
               
@@ -597,25 +599,25 @@ class cp_treeparser(TreeParser):
 
         try:
             try:
-                # cp_treeparser.g:126:1: ( ^( SCOPE_R ^( START level[\"start\"] ) ^( END level[\"end\"] ) ) )
-                # cp_treeparser.g:127:1: ^( SCOPE_R ^( START level[\"start\"] ) ^( END level[\"end\"] ) )
+                # cp_treeparser.g:133:1: ( ^( SCOPE_R ^( START level[\"start\"] ) ^( END level[\"end\"] ) ) )
+                # cp_treeparser.g:134:1: ^( SCOPE_R ^( START level[\"start\"] ) ^( END level[\"end\"] ) )
                 pass 
-                self.match(self.input, SCOPE_R, self.FOLLOW_SCOPE_R_in_scp_range229)
+                self.match(self.input, SCOPE_R, self.FOLLOW_SCOPE_R_in_scp_range232)
 
                 self.match(self.input, DOWN, None)
-                self.match(self.input, START, self.FOLLOW_START_in_scp_range232)
+                self.match(self.input, START, self.FOLLOW_START_in_scp_range235)
 
                 self.match(self.input, DOWN, None)
-                self._state.following.append(self.FOLLOW_level_in_scp_range234)
+                self._state.following.append(self.FOLLOW_level_in_scp_range237)
                 self.level("start")
 
                 self._state.following.pop()
 
                 self.match(self.input, UP, None)
-                self.match(self.input, END, self.FOLLOW_END_in_scp_range239)
+                self.match(self.input, END, self.FOLLOW_END_in_scp_range242)
 
                 self.match(self.input, DOWN, None)
-                self._state.following.append(self.FOLLOW_level_in_scp_range241)
+                self._state.following.append(self.FOLLOW_level_in_scp_range244)
                 self.level("end")
 
                 self._state.following.pop()
@@ -662,31 +664,31 @@ class cp_treeparser(TreeParser):
 
  
 
-    FOLLOW_citation_in_doc53 = frozenset([1, 19])
-    FOLLOW_CITATION_in_citation67 = frozenset([2])
-    FOLLOW_ref_in_citation69 = frozenset([3, 18])
-    FOLLOW_ref_in_citation71 = frozenset([3, 18])
-    FOLLOW_REF_in_ref94 = frozenset([2])
-    FOLLOW_work_in_ref96 = frozenset([20, 23, 24])
-    FOLLOW_scp_in_ref99 = frozenset([3, 21])
-    FOLLOW_editor_in_ref101 = frozenset([3, 21])
-    FOLLOW_WORK_in_work112 = frozenset([2])
-    FOLLOW_LITERAL_in_work116 = frozenset([3, 17])
-    FOLLOW_EDITOR_in_editor129 = frozenset([2])
-    FOLLOW_LITERAL_in_editor131 = frozenset([3])
-    FOLLOW_LEVEL_in_level155 = frozenset([2])
-    FOLLOW_INT_in_level159 = frozenset([3])
-    FOLLOW_LEVEL_in_level164 = frozenset([2])
-    FOLLOW_INT_in_level168 = frozenset([3])
-    FOLLOW_scp_single_in_scp190 = frozenset([1])
-    FOLLOW_scp_range_in_scp192 = frozenset([1])
-    FOLLOW_SCOPE_S_in_scp_single207 = frozenset([2])
-    FOLLOW_level_in_scp_single209 = frozenset([3])
-    FOLLOW_SCOPE_R_in_scp_range229 = frozenset([2])
-    FOLLOW_START_in_scp_range232 = frozenset([2])
-    FOLLOW_level_in_scp_range234 = frozenset([3])
-    FOLLOW_END_in_scp_range239 = frozenset([2])
-    FOLLOW_level_in_scp_range241 = frozenset([3])
+    FOLLOW_citation_in_doc56 = frozenset([1, 19])
+    FOLLOW_CITATION_in_citation70 = frozenset([2])
+    FOLLOW_ref_in_citation72 = frozenset([3, 18])
+    FOLLOW_ref_in_citation74 = frozenset([3, 18])
+    FOLLOW_REF_in_ref97 = frozenset([2])
+    FOLLOW_work_in_ref99 = frozenset([20, 23, 24])
+    FOLLOW_scp_in_ref102 = frozenset([3, 21])
+    FOLLOW_editor_in_ref104 = frozenset([3, 21])
+    FOLLOW_WORK_in_work115 = frozenset([2])
+    FOLLOW_LITERAL_in_work119 = frozenset([3, 17])
+    FOLLOW_EDITOR_in_editor132 = frozenset([2])
+    FOLLOW_LITERAL_in_editor134 = frozenset([3])
+    FOLLOW_LEVEL_in_level158 = frozenset([2])
+    FOLLOW_INT_in_level162 = frozenset([3])
+    FOLLOW_LEVEL_in_level167 = frozenset([2])
+    FOLLOW_INT_in_level171 = frozenset([3])
+    FOLLOW_scp_single_in_scp193 = frozenset([1])
+    FOLLOW_scp_range_in_scp195 = frozenset([1])
+    FOLLOW_SCOPE_S_in_scp_single210 = frozenset([2])
+    FOLLOW_level_in_scp_single212 = frozenset([3])
+    FOLLOW_SCOPE_R_in_scp_range232 = frozenset([2])
+    FOLLOW_START_in_scp_range235 = frozenset([2])
+    FOLLOW_level_in_scp_range237 = frozenset([3])
+    FOLLOW_END_in_scp_range242 = frozenset([2])
+    FOLLOW_level_in_scp_range244 = frozenset([3])
 
 
 

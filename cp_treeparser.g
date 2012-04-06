@@ -42,8 +42,10 @@ else:
 }
 
 @after{
-if(not self.curr_ref.has_key('work')):
+if(not self.curr_ref.has_key('work') and self.prev_ref.has_key('work')):
 	self.curr_ref["work"]=self.prev_ref["work"]
+elif(not self.prev_ref.has_key('work')):
+	self.curr_ref["work"]=None
 self.refs.append(dict(self.curr_ref))
 }
 :	

@@ -1,4 +1,4 @@
-# $ANTLR 3.1.2 cp_parser.g 2011-07-07 15:22:17
+# $ANTLR 3.1.2 cp_parser.g 2012-04-06 11:26:08
 
 import sys
 from antlr3 import *
@@ -102,7 +102,7 @@ class cp_parser(Parser):
 
 
     # $ANTLR start "doc"
-    # cp_parser.g:22:1: doc : ( citation )+ ;
+    # cp_parser.g:35:1: doc : ( citation )+ ;
     def doc(self, ):
 
         retval = self.doc_return()
@@ -116,12 +116,12 @@ class cp_parser(Parser):
 
         try:
             try:
-                # cp_parser.g:22:5: ( ( citation )+ )
-                # cp_parser.g:22:7: ( citation )+
+                # cp_parser.g:35:5: ( ( citation )+ )
+                # cp_parser.g:35:7: ( citation )+
                 pass 
                 root_0 = self._adaptor.nil()
 
-                # cp_parser.g:22:7: ( citation )+
+                # cp_parser.g:35:7: ( citation )+
                 cnt1 = 0
                 while True: #loop1
                     alt1 = 2
@@ -132,9 +132,9 @@ class cp_parser(Parser):
 
 
                     if alt1 == 1:
-                        # cp_parser.g:22:8: citation
+                        # cp_parser.g:35:8: citation
                         pass 
-                        self._state.following.append(self.FOLLOW_citation_in_doc97)
+                        self._state.following.append(self.FOLLOW_citation_in_doc104)
                         citation1 = self.citation()
 
                         self._state.following.pop()
@@ -188,7 +188,7 @@ class cp_parser(Parser):
 
 
     # $ANTLR start "citation"
-    # cp_parser.g:24:1: citation : ( ref ( ref_separator ref )* ) -> ^( CITATION ref ( ref )* ) ;
+    # cp_parser.g:37:1: citation : ( ref ( ref_separator ref )* ) -> ^( CITATION ref ( ref )* ) ;
     def citation(self, ):
 
         retval = self.citation_return()
@@ -207,19 +207,19 @@ class cp_parser(Parser):
         stream_ref_separator = RewriteRuleSubtreeStream(self._adaptor, "rule ref_separator")
         try:
             try:
-                # cp_parser.g:24:10: ( ( ref ( ref_separator ref )* ) -> ^( CITATION ref ( ref )* ) )
-                # cp_parser.g:24:12: ( ref ( ref_separator ref )* )
+                # cp_parser.g:37:10: ( ( ref ( ref_separator ref )* ) -> ^( CITATION ref ( ref )* ) )
+                # cp_parser.g:37:12: ( ref ( ref_separator ref )* )
                 pass 
-                # cp_parser.g:24:12: ( ref ( ref_separator ref )* )
-                # cp_parser.g:24:13: ref ( ref_separator ref )*
+                # cp_parser.g:37:12: ( ref ( ref_separator ref )* )
+                # cp_parser.g:37:13: ref ( ref_separator ref )*
                 pass 
-                self._state.following.append(self.FOLLOW_ref_in_citation108)
+                self._state.following.append(self.FOLLOW_ref_in_citation115)
                 ref2 = self.ref()
 
                 self._state.following.pop()
                 if self._state.backtracking == 0:
                     stream_ref.add(ref2.tree)
-                # cp_parser.g:24:17: ( ref_separator ref )*
+                # cp_parser.g:37:17: ( ref_separator ref )*
                 while True: #loop2
                     alt2 = 2
                     LA2_0 = self.input.LA(1)
@@ -229,15 +229,15 @@ class cp_parser(Parser):
 
 
                     if alt2 == 1:
-                        # cp_parser.g:24:18: ref_separator ref
+                        # cp_parser.g:37:18: ref_separator ref
                         pass 
-                        self._state.following.append(self.FOLLOW_ref_separator_in_citation111)
+                        self._state.following.append(self.FOLLOW_ref_separator_in_citation118)
                         ref_separator3 = self.ref_separator()
 
                         self._state.following.pop()
                         if self._state.backtracking == 0:
                             stream_ref_separator.add(ref_separator3.tree)
-                        self._state.following.append(self.FOLLOW_ref_in_citation113)
+                        self._state.following.append(self.FOLLOW_ref_in_citation120)
                         ref4 = self.ref()
 
                         self._state.following.pop()
@@ -271,13 +271,13 @@ class cp_parser(Parser):
 
 
                     root_0 = self._adaptor.nil()
-                    # 25:1: -> ^( CITATION ref ( ref )* )
-                    # cp_parser.g:26:1: ^( CITATION ref ( ref )* )
+                    # 38:1: -> ^( CITATION ref ( ref )* )
+                    # cp_parser.g:39:1: ^( CITATION ref ( ref )* )
                     root_1 = self._adaptor.nil()
                     root_1 = self._adaptor.becomeRoot(self._adaptor.createFromType(CITATION, "CITATION"), root_1)
 
                     self._adaptor.addChild(root_1, stream_ref.nextTree())
-                    # cp_parser.g:26:16: ( ref )*
+                    # cp_parser.g:39:16: ( ref )*
                     while stream_ref.hasNext():
                         self._adaptor.addChild(root_1, stream_ref.nextTree())
 
@@ -322,7 +322,7 @@ class cp_parser(Parser):
 
 
     # $ANTLR start "ref_separator"
-    # cp_parser.g:29:1: ref_separator : SEMICOL ->;
+    # cp_parser.g:45:1: ref_separator : SEMICOL ->;
     def ref_separator(self, ):
 
         retval = self.ref_separator_return()
@@ -337,10 +337,10 @@ class cp_parser(Parser):
 
         try:
             try:
-                # cp_parser.g:29:14: ( SEMICOL ->)
-                # cp_parser.g:29:16: SEMICOL
+                # cp_parser.g:45:14: ( SEMICOL ->)
+                # cp_parser.g:45:16: SEMICOL
                 pass 
-                SEMICOL5=self.match(self.input, SEMICOL, self.FOLLOW_SEMICOL_in_ref_separator135) 
+                SEMICOL5=self.match(self.input, SEMICOL, self.FOLLOW_SEMICOL_in_ref_separator145) 
                 if self._state.backtracking == 0:
                     stream_SEMICOL.add(SEMICOL5)
 
@@ -362,7 +362,7 @@ class cp_parser(Parser):
 
 
                     root_0 = self._adaptor.nil()
-                    # 29:24: ->
+                    # 45:24: ->
                     root_0 = None
 
 
@@ -400,7 +400,7 @@ class cp_parser(Parser):
 
 
     # $ANTLR start "ref"
-    # cp_parser.g:31:1: ref : ( work )* scp ( editor )* -> ^( REF ( work )* scp ( editor )* ) ;
+    # cp_parser.g:47:1: ref : ( work )* scp ( editor )* -> ^( REF ( work )* scp ( editor )* ) ;
     def ref(self, ):
 
         retval = self.ref_return()
@@ -420,10 +420,10 @@ class cp_parser(Parser):
         stream_editor = RewriteRuleSubtreeStream(self._adaptor, "rule editor")
         try:
             try:
-                # cp_parser.g:31:4: ( ( work )* scp ( editor )* -> ^( REF ( work )* scp ( editor )* ) )
-                # cp_parser.g:31:6: ( work )* scp ( editor )*
+                # cp_parser.g:47:4: ( ( work )* scp ( editor )* -> ^( REF ( work )* scp ( editor )* ) )
+                # cp_parser.g:47:6: ( work )* scp ( editor )*
                 pass 
-                # cp_parser.g:31:6: ( work )*
+                # cp_parser.g:47:6: ( work )*
                 while True: #loop3
                     alt3 = 2
                     LA3_0 = self.input.LA(1)
@@ -435,7 +435,7 @@ class cp_parser(Parser):
                     if alt3 == 1:
                         # cp_parser.g:0:0: work
                         pass 
-                        self._state.following.append(self.FOLLOW_work_in_ref144)
+                        self._state.following.append(self.FOLLOW_work_in_ref154)
                         work6 = self.work()
 
                         self._state.following.pop()
@@ -447,13 +447,13 @@ class cp_parser(Parser):
                         break #loop3
 
 
-                self._state.following.append(self.FOLLOW_scp_in_ref147)
+                self._state.following.append(self.FOLLOW_scp_in_ref157)
                 scp7 = self.scp()
 
                 self._state.following.pop()
                 if self._state.backtracking == 0:
                     stream_scp.add(scp7.tree)
-                # cp_parser.g:31:16: ( editor )*
+                # cp_parser.g:47:16: ( editor )*
                 while True: #loop4
                     alt4 = 2
                     LA4_0 = self.input.LA(1)
@@ -470,7 +470,7 @@ class cp_parser(Parser):
                     if alt4 == 1:
                         # cp_parser.g:0:0: editor
                         pass 
-                        self._state.following.append(self.FOLLOW_editor_in_ref149)
+                        self._state.following.append(self.FOLLOW_editor_in_ref159)
                         editor8 = self.editor()
 
                         self._state.following.pop()
@@ -484,7 +484,7 @@ class cp_parser(Parser):
 
 
                 # AST Rewrite
-                # elements: scp, editor, work
+                # elements: editor, scp, work
                 # token labels: 
                 # rule labels: retval
                 # token list labels: 
@@ -501,19 +501,19 @@ class cp_parser(Parser):
 
 
                     root_0 = self._adaptor.nil()
-                    # 32:1: -> ^( REF ( work )* scp ( editor )* )
-                    # cp_parser.g:33:1: ^( REF ( work )* scp ( editor )* )
+                    # 48:1: -> ^( REF ( work )* scp ( editor )* )
+                    # cp_parser.g:49:1: ^( REF ( work )* scp ( editor )* )
                     root_1 = self._adaptor.nil()
                     root_1 = self._adaptor.becomeRoot(self._adaptor.createFromType(REF, "REF"), root_1)
 
-                    # cp_parser.g:33:7: ( work )*
+                    # cp_parser.g:49:7: ( work )*
                     while stream_work.hasNext():
                         self._adaptor.addChild(root_1, stream_work.nextTree())
 
 
                     stream_work.reset();
                     self._adaptor.addChild(root_1, stream_scp.nextTree())
-                    # cp_parser.g:33:17: ( editor )*
+                    # cp_parser.g:49:17: ( editor )*
                     while stream_editor.hasNext():
                         self._adaptor.addChild(root_1, stream_editor.nextTree())
 
@@ -558,7 +558,7 @@ class cp_parser(Parser):
 
 
     # $ANTLR start "scp"
-    # cp_parser.g:36:1: scp : ( scp_single | scp_range ) ;
+    # cp_parser.g:52:1: scp : ( scp_single | scp_range ) ;
     def scp(self, ):
 
         retval = self.scp_return()
@@ -574,18 +574,18 @@ class cp_parser(Parser):
 
         try:
             try:
-                # cp_parser.g:36:4: ( ( scp_single | scp_range ) )
-                # cp_parser.g:36:6: ( scp_single | scp_range )
+                # cp_parser.g:52:4: ( ( scp_single | scp_range ) )
+                # cp_parser.g:52:6: ( scp_single | scp_range )
                 pass 
                 root_0 = self._adaptor.nil()
 
-                # cp_parser.g:36:6: ( scp_single | scp_range )
+                # cp_parser.g:52:6: ( scp_single | scp_range )
                 alt5 = 2
                 alt5 = self.dfa5.predict(self.input)
                 if alt5 == 1:
-                    # cp_parser.g:36:7: scp_single
+                    # cp_parser.g:52:7: scp_single
                     pass 
-                    self._state.following.append(self.FOLLOW_scp_single_in_scp173)
+                    self._state.following.append(self.FOLLOW_scp_single_in_scp183)
                     scp_single9 = self.scp_single()
 
                     self._state.following.pop()
@@ -594,9 +594,9 @@ class cp_parser(Parser):
 
 
                 elif alt5 == 2:
-                    # cp_parser.g:36:18: scp_range
+                    # cp_parser.g:52:18: scp_range
                     pass 
-                    self._state.following.append(self.FOLLOW_scp_range_in_scp175)
+                    self._state.following.append(self.FOLLOW_scp_range_in_scp185)
                     scp_range10 = self.scp_range()
 
                     self._state.following.pop()
@@ -638,7 +638,7 @@ class cp_parser(Parser):
 
 
     # $ANTLR start "work"
-    # cp_parser.g:38:1: work : ( ( LITERAL )+ ) -> ^( WORK ( LITERAL )+ ) ;
+    # cp_parser.g:54:1: work : ( ( LITERAL )+ ) -> ^( WORK ( LITERAL )+ ) ;
     def work(self, ):
 
         retval = self.work_return()
@@ -653,13 +653,13 @@ class cp_parser(Parser):
 
         try:
             try:
-                # cp_parser.g:38:5: ( ( ( LITERAL )+ ) -> ^( WORK ( LITERAL )+ ) )
-                # cp_parser.g:39:1: ( ( LITERAL )+ )
+                # cp_parser.g:54:5: ( ( ( LITERAL )+ ) -> ^( WORK ( LITERAL )+ ) )
+                # cp_parser.g:55:1: ( ( LITERAL )+ )
                 pass 
-                # cp_parser.g:39:1: ( ( LITERAL )+ )
-                # cp_parser.g:39:2: ( LITERAL )+
+                # cp_parser.g:55:1: ( ( LITERAL )+ )
+                # cp_parser.g:55:2: ( LITERAL )+
                 pass 
-                # cp_parser.g:39:2: ( LITERAL )+
+                # cp_parser.g:55:2: ( LITERAL )+
                 cnt6 = 0
                 while True: #loop6
                     alt6 = 2
@@ -677,7 +677,7 @@ class cp_parser(Parser):
                     if alt6 == 1:
                         # cp_parser.g:0:0: LITERAL
                         pass 
-                        LITERAL11=self.match(self.input, LITERAL, self.FOLLOW_LITERAL_in_work184) 
+                        LITERAL11=self.match(self.input, LITERAL, self.FOLLOW_LITERAL_in_work194) 
                         if self._state.backtracking == 0:
                             stream_LITERAL.add(LITERAL11)
 
@@ -717,12 +717,12 @@ class cp_parser(Parser):
 
 
                     root_0 = self._adaptor.nil()
-                    # 40:1: -> ^( WORK ( LITERAL )+ )
-                    # cp_parser.g:41:1: ^( WORK ( LITERAL )+ )
+                    # 56:1: -> ^( WORK ( LITERAL )+ )
+                    # cp_parser.g:57:1: ^( WORK ( LITERAL )+ )
                     root_1 = self._adaptor.nil()
                     root_1 = self._adaptor.becomeRoot(self._adaptor.createFromType(WORK, "WORK"), root_1)
 
-                    # cp_parser.g:41:8: ( LITERAL )+
+                    # cp_parser.g:57:8: ( LITERAL )+
                     if not (stream_LITERAL.hasNext()):
                         raise RewriteEarlyExitException()
 
@@ -770,7 +770,7 @@ class cp_parser(Parser):
 
 
     # $ANTLR start "editor"
-    # cp_parser.g:44:1: editor : ( LITERAL ) -> ^( EDITOR LITERAL ) ;
+    # cp_parser.g:60:1: editor : ( LITERAL ) -> ^( EDITOR LITERAL ) ;
     def editor(self, ):
 
         retval = self.editor_return()
@@ -785,13 +785,13 @@ class cp_parser(Parser):
 
         try:
             try:
-                # cp_parser.g:44:7: ( ( LITERAL ) -> ^( EDITOR LITERAL ) )
-                # cp_parser.g:45:1: ( LITERAL )
+                # cp_parser.g:60:7: ( ( LITERAL ) -> ^( EDITOR LITERAL ) )
+                # cp_parser.g:61:1: ( LITERAL )
                 pass 
-                # cp_parser.g:45:1: ( LITERAL )
-                # cp_parser.g:45:2: LITERAL
+                # cp_parser.g:61:1: ( LITERAL )
+                # cp_parser.g:61:2: LITERAL
                 pass 
-                LITERAL12=self.match(self.input, LITERAL, self.FOLLOW_LITERAL_in_editor204) 
+                LITERAL12=self.match(self.input, LITERAL, self.FOLLOW_LITERAL_in_editor214) 
                 if self._state.backtracking == 0:
                     stream_LITERAL.add(LITERAL12)
 
@@ -816,8 +816,8 @@ class cp_parser(Parser):
 
 
                     root_0 = self._adaptor.nil()
-                    # 46:1: -> ^( EDITOR LITERAL )
-                    # cp_parser.g:47:1: ^( EDITOR LITERAL )
+                    # 62:1: -> ^( EDITOR LITERAL )
+                    # cp_parser.g:63:1: ^( EDITOR LITERAL )
                     root_1 = self._adaptor.nil()
                     root_1 = self._adaptor.becomeRoot(self._adaptor.createFromType(EDITOR, "EDITOR"), root_1)
 
@@ -861,7 +861,7 @@ class cp_parser(Parser):
 
 
     # $ANTLR start "lev_sep"
-    # cp_parser.g:50:1: lev_sep : ( VIRGOLA | PUNTO ) ;
+    # cp_parser.g:67:1: lev_sep : ( VIRGOLA | PUNTO ) ;
     def lev_sep(self, ):
 
         retval = self.lev_sep_return()
@@ -875,8 +875,8 @@ class cp_parser(Parser):
 
         try:
             try:
-                # cp_parser.g:50:8: ( ( VIRGOLA | PUNTO ) )
-                # cp_parser.g:50:9: ( VIRGOLA | PUNTO )
+                # cp_parser.g:67:8: ( ( VIRGOLA | PUNTO ) )
+                # cp_parser.g:67:9: ( VIRGOLA | PUNTO )
                 pass 
                 root_0 = self._adaptor.nil()
 
@@ -928,7 +928,7 @@ class cp_parser(Parser):
 
 
     # $ANTLR start "level"
-    # cp_parser.g:52:1: level : INT ( lev_sep INT )* -> ^( LEVEL INT ) ( ^( LEVEL INT ) )* ;
+    # cp_parser.g:69:1: level : INT ( lev_sep INT )* -> ^( LEVEL INT ) ( ^( LEVEL INT ) )* ;
     def level(self, ):
 
         retval = self.level_return()
@@ -947,13 +947,13 @@ class cp_parser(Parser):
         stream_lev_sep = RewriteRuleSubtreeStream(self._adaptor, "rule lev_sep")
         try:
             try:
-                # cp_parser.g:52:6: ( INT ( lev_sep INT )* -> ^( LEVEL INT ) ( ^( LEVEL INT ) )* )
-                # cp_parser.g:53:1: INT ( lev_sep INT )*
+                # cp_parser.g:69:6: ( INT ( lev_sep INT )* -> ^( LEVEL INT ) ( ^( LEVEL INT ) )* )
+                # cp_parser.g:70:1: INT ( lev_sep INT )*
                 pass 
-                INT14=self.match(self.input, INT, self.FOLLOW_INT_in_level231) 
+                INT14=self.match(self.input, INT, self.FOLLOW_INT_in_level242) 
                 if self._state.backtracking == 0:
                     stream_INT.add(INT14)
-                # cp_parser.g:53:5: ( lev_sep INT )*
+                # cp_parser.g:70:5: ( lev_sep INT )*
                 while True: #loop7
                     alt7 = 2
                     LA7_0 = self.input.LA(1)
@@ -963,15 +963,15 @@ class cp_parser(Parser):
 
 
                     if alt7 == 1:
-                        # cp_parser.g:53:6: lev_sep INT
+                        # cp_parser.g:70:6: lev_sep INT
                         pass 
-                        self._state.following.append(self.FOLLOW_lev_sep_in_level234)
+                        self._state.following.append(self.FOLLOW_lev_sep_in_level245)
                         lev_sep15 = self.lev_sep()
 
                         self._state.following.pop()
                         if self._state.backtracking == 0:
                             stream_lev_sep.add(lev_sep15.tree)
-                        INT16=self.match(self.input, INT, self.FOLLOW_INT_in_level236) 
+                        INT16=self.match(self.input, INT, self.FOLLOW_INT_in_level247) 
                         if self._state.backtracking == 0:
                             stream_INT.add(INT16)
 
@@ -999,17 +999,17 @@ class cp_parser(Parser):
 
 
                     root_0 = self._adaptor.nil()
-                    # 54:1: -> ^( LEVEL INT ) ( ^( LEVEL INT ) )*
-                    # cp_parser.g:55:1: ^( LEVEL INT )
+                    # 71:1: -> ^( LEVEL INT ) ( ^( LEVEL INT ) )*
+                    # cp_parser.g:72:1: ^( LEVEL INT )
                     root_1 = self._adaptor.nil()
                     root_1 = self._adaptor.becomeRoot(self._adaptor.createFromType(LEVEL, "LEVEL"), root_1)
 
                     self._adaptor.addChild(root_1, stream_INT.nextNode())
 
                     self._adaptor.addChild(root_0, root_1)
-                    # cp_parser.g:55:14: ( ^( LEVEL INT ) )*
+                    # cp_parser.g:72:14: ( ^( LEVEL INT ) )*
                     while stream_INT.hasNext():
-                        # cp_parser.g:55:14: ^( LEVEL INT )
+                        # cp_parser.g:72:14: ^( LEVEL INT )
                         root_1 = self._adaptor.nil()
                         root_1 = self._adaptor.becomeRoot(self._adaptor.createFromType(LEVEL, "LEVEL"), root_1)
 
@@ -1056,7 +1056,7 @@ class cp_parser(Parser):
 
 
     # $ANTLR start "scp_single"
-    # cp_parser.g:58:1: scp_single : ( level ) -> ^( SCOPE_S level ) ;
+    # cp_parser.g:75:1: scp_single : ( level ) -> ^( SCOPE_S level ) ;
     def scp_single(self, ):
 
         retval = self.scp_single_return()
@@ -1070,13 +1070,13 @@ class cp_parser(Parser):
         stream_level = RewriteRuleSubtreeStream(self._adaptor, "rule level")
         try:
             try:
-                # cp_parser.g:58:11: ( ( level ) -> ^( SCOPE_S level ) )
-                # cp_parser.g:59:1: ( level )
+                # cp_parser.g:75:11: ( ( level ) -> ^( SCOPE_S level ) )
+                # cp_parser.g:76:1: ( level )
                 pass 
-                # cp_parser.g:59:1: ( level )
-                # cp_parser.g:59:2: level
+                # cp_parser.g:76:1: ( level )
+                # cp_parser.g:76:2: level
                 pass 
-                self._state.following.append(self.FOLLOW_level_in_scp_single262)
+                self._state.following.append(self.FOLLOW_level_in_scp_single273)
                 level17 = self.level()
 
                 self._state.following.pop()
@@ -1104,8 +1104,8 @@ class cp_parser(Parser):
 
 
                     root_0 = self._adaptor.nil()
-                    # 60:1: -> ^( SCOPE_S level )
-                    # cp_parser.g:61:1: ^( SCOPE_S level )
+                    # 77:1: -> ^( SCOPE_S level )
+                    # cp_parser.g:78:1: ^( SCOPE_S level )
                     root_1 = self._adaptor.nil()
                     root_1 = self._adaptor.becomeRoot(self._adaptor.createFromType(SCOPE_S, "SCOPE_S"), root_1)
 
@@ -1149,7 +1149,7 @@ class cp_parser(Parser):
 
 
     # $ANTLR start "scp_range"
-    # cp_parser.g:64:1: scp_range : ( level HYPHEN level ) -> ^( SCOPE_R ^( START level ) ^( END level ) ) ;
+    # cp_parser.g:81:1: scp_range : ( level HYPHEN level ) -> ^( SCOPE_R ^( START level ) ^( END level ) ) ;
     def scp_range(self, ):
 
         retval = self.scp_range_return()
@@ -1168,22 +1168,22 @@ class cp_parser(Parser):
         stream_level = RewriteRuleSubtreeStream(self._adaptor, "rule level")
         try:
             try:
-                # cp_parser.g:64:10: ( ( level HYPHEN level ) -> ^( SCOPE_R ^( START level ) ^( END level ) ) )
-                # cp_parser.g:65:1: ( level HYPHEN level )
+                # cp_parser.g:81:10: ( ( level HYPHEN level ) -> ^( SCOPE_R ^( START level ) ^( END level ) ) )
+                # cp_parser.g:82:1: ( level HYPHEN level )
                 pass 
-                # cp_parser.g:65:1: ( level HYPHEN level )
-                # cp_parser.g:65:2: level HYPHEN level
+                # cp_parser.g:82:1: ( level HYPHEN level )
+                # cp_parser.g:82:2: level HYPHEN level
                 pass 
-                self._state.following.append(self.FOLLOW_level_in_scp_range280)
+                self._state.following.append(self.FOLLOW_level_in_scp_range291)
                 level18 = self.level()
 
                 self._state.following.pop()
                 if self._state.backtracking == 0:
                     stream_level.add(level18.tree)
-                HYPHEN19=self.match(self.input, HYPHEN, self.FOLLOW_HYPHEN_in_scp_range282) 
+                HYPHEN19=self.match(self.input, HYPHEN, self.FOLLOW_HYPHEN_in_scp_range293) 
                 if self._state.backtracking == 0:
                     stream_HYPHEN.add(HYPHEN19)
-                self._state.following.append(self.FOLLOW_level_in_scp_range284)
+                self._state.following.append(self.FOLLOW_level_in_scp_range295)
                 level20 = self.level()
 
                 self._state.following.pop()
@@ -1211,19 +1211,19 @@ class cp_parser(Parser):
 
 
                     root_0 = self._adaptor.nil()
-                    # 66:1: -> ^( SCOPE_R ^( START level ) ^( END level ) )
-                    # cp_parser.g:67:1: ^( SCOPE_R ^( START level ) ^( END level ) )
+                    # 83:1: -> ^( SCOPE_R ^( START level ) ^( END level ) )
+                    # cp_parser.g:84:1: ^( SCOPE_R ^( START level ) ^( END level ) )
                     root_1 = self._adaptor.nil()
                     root_1 = self._adaptor.becomeRoot(self._adaptor.createFromType(SCOPE_R, "SCOPE_R"), root_1)
 
-                    # cp_parser.g:67:11: ^( START level )
+                    # cp_parser.g:84:11: ^( START level )
                     root_2 = self._adaptor.nil()
                     root_2 = self._adaptor.becomeRoot(self._adaptor.createFromType(START, "START"), root_2)
 
                     self._adaptor.addChild(root_2, stream_level.nextTree())
 
                     self._adaptor.addChild(root_1, root_2)
-                    # cp_parser.g:67:26: ^( END level )
+                    # cp_parser.g:84:26: ^( END level )
                     root_2 = self._adaptor.nil()
                     root_2 = self._adaptor.becomeRoot(self._adaptor.createFromType(END, "END"), root_2)
 
@@ -1261,10 +1261,10 @@ class cp_parser(Parser):
 
     # $ANTLR start "synpred4_cp_parser"
     def synpred4_cp_parser_fragment(self, ):
-        # cp_parser.g:31:16: ( editor )
-        # cp_parser.g:31:16: editor
+        # cp_parser.g:47:16: ( editor )
+        # cp_parser.g:47:16: editor
         pass 
-        self._state.following.append(self.FOLLOW_editor_in_synpred4_cp_parser149)
+        self._state.following.append(self.FOLLOW_editor_in_synpred4_cp_parser159)
         self.editor()
 
         self._state.following.pop()
@@ -1276,10 +1276,10 @@ class cp_parser(Parser):
 
     # $ANTLR start "synpred6_cp_parser"
     def synpred6_cp_parser_fragment(self, ):
-        # cp_parser.g:39:2: ( LITERAL )
-        # cp_parser.g:39:2: LITERAL
+        # cp_parser.g:55:2: ( LITERAL )
+        # cp_parser.g:55:2: LITERAL
         pass 
-        self.match(self.input, LITERAL, self.FOLLOW_LITERAL_in_synpred6_cp_parser184)
+        self.match(self.input, LITERAL, self.FOLLOW_LITERAL_in_synpred6_cp_parser194)
 
 
     # $ANTLR end "synpred6_cp_parser"
@@ -1360,28 +1360,28 @@ class cp_parser(Parser):
     DFA5 = DFA
  
 
-    FOLLOW_citation_in_doc97 = frozenset([1, 4, 17])
-    FOLLOW_ref_in_citation108 = frozenset([1, 11])
-    FOLLOW_ref_separator_in_citation111 = frozenset([4, 11, 17])
-    FOLLOW_ref_in_citation113 = frozenset([1, 11])
-    FOLLOW_SEMICOL_in_ref_separator135 = frozenset([1])
-    FOLLOW_work_in_ref144 = frozenset([4, 17])
-    FOLLOW_scp_in_ref147 = frozenset([1, 17])
-    FOLLOW_editor_in_ref149 = frozenset([1, 17])
-    FOLLOW_scp_single_in_scp173 = frozenset([1])
-    FOLLOW_scp_range_in_scp175 = frozenset([1])
-    FOLLOW_LITERAL_in_work184 = frozenset([1, 17])
-    FOLLOW_LITERAL_in_editor204 = frozenset([1])
-    FOLLOW_set_in_lev_sep220 = frozenset([1])
-    FOLLOW_INT_in_level231 = frozenset([1, 6, 8])
-    FOLLOW_lev_sep_in_level234 = frozenset([4])
-    FOLLOW_INT_in_level236 = frozenset([1, 6, 8])
-    FOLLOW_level_in_scp_single262 = frozenset([1])
-    FOLLOW_level_in_scp_range280 = frozenset([10])
-    FOLLOW_HYPHEN_in_scp_range282 = frozenset([4])
-    FOLLOW_level_in_scp_range284 = frozenset([1])
-    FOLLOW_editor_in_synpred4_cp_parser149 = frozenset([1])
-    FOLLOW_LITERAL_in_synpred6_cp_parser184 = frozenset([1])
+    FOLLOW_citation_in_doc104 = frozenset([1, 4, 17])
+    FOLLOW_ref_in_citation115 = frozenset([1, 11])
+    FOLLOW_ref_separator_in_citation118 = frozenset([4, 11, 17])
+    FOLLOW_ref_in_citation120 = frozenset([1, 11])
+    FOLLOW_SEMICOL_in_ref_separator145 = frozenset([1])
+    FOLLOW_work_in_ref154 = frozenset([4, 17])
+    FOLLOW_scp_in_ref157 = frozenset([1, 17])
+    FOLLOW_editor_in_ref159 = frozenset([1, 17])
+    FOLLOW_scp_single_in_scp183 = frozenset([1])
+    FOLLOW_scp_range_in_scp185 = frozenset([1])
+    FOLLOW_LITERAL_in_work194 = frozenset([1, 17])
+    FOLLOW_LITERAL_in_editor214 = frozenset([1])
+    FOLLOW_set_in_lev_sep231 = frozenset([1])
+    FOLLOW_INT_in_level242 = frozenset([1, 6, 8])
+    FOLLOW_lev_sep_in_level245 = frozenset([4])
+    FOLLOW_INT_in_level247 = frozenset([1, 6, 8])
+    FOLLOW_level_in_scp_single273 = frozenset([1])
+    FOLLOW_level_in_scp_range291 = frozenset([10])
+    FOLLOW_HYPHEN_in_scp_range293 = frozenset([4])
+    FOLLOW_level_in_scp_range295 = frozenset([1])
+    FOLLOW_editor_in_synpred4_cp_parser159 = frozenset([1])
+    FOLLOW_LITERAL_in_synpred6_cp_parser194 = frozenset([1])
 
 
 
