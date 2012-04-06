@@ -1,4 +1,4 @@
-# $ANTLR 3.1.2 cp_parser.g 2012-04-06 11:26:08
+# $ANTLR 3.1.2 cp_parser.g 2012-04-06 11:54:46
 
 import sys
 from antlr3 import *
@@ -484,7 +484,7 @@ class cp_parser(Parser):
 
 
                 # AST Rewrite
-                # elements: editor, scp, work
+                # elements: scp, work, editor
                 # token labels: 
                 # rule labels: retval
                 # token list labels: 
