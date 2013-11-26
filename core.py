@@ -41,8 +41,8 @@ class citation_parser:
 					tp = cp_treeparser(nodes)
 					tp.doc()
 					self.logger.debug(tp.refs)
-					result = sj.dumps(str(tp.refs))
-					return result
+					#result = sj.dumps(str(tp.refs))
+					return tp.refs
 				except Exception as e:
 					self.logger.error("%s"%e)
 					self.logger.error("there was a problem w/ the TreeParser: exiting")
