@@ -1,4 +1,4 @@
-# $ANTLR 3.1.2 cp_treeparser.g 2012-04-06 11:26:09
+# $ANTLR 3.1.2 cp_treeparser.g 2012-04-06 11:54:47
 
 import sys
 from antlr3 import *
@@ -273,7 +273,7 @@ class cp_treeparser(TreeParser):
                        
                 if(not self.curr_ref.has_key('work') and self.prev_ref.has_key('work')):
                 	self.curr_ref["work"]=self.prev_ref["work"]
-                elif(not self.prev_ref.has_key('work')):
+                elif(not self.curr_ref.has_key('work')):
                 	self.curr_ref["work"]=None
                 self.refs.append(dict(self.curr_ref))
 

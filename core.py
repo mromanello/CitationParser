@@ -3,9 +3,9 @@
 # author: Matteo Romanello, matteo.romanello@gmail.com
 
 import logging, antlr3,sys
-from cp_lexer import cp_lexer
-from cp_parser import cp_parser
-from cp_treeparser import cp_treeparser
+from antlr.cp_lexer import cp_lexer
+from antlr.cp_parser import cp_parser
+from antlr.cp_treeparser import cp_treeparser
 try:
 	import simplejson as sj
 except ImportError:
@@ -34,6 +34,7 @@ class citation_parser:
 			try:
 				r=parser.doc()
 				root = r.tree
+				print root.toStringTree()
 				self.logger.debug(root.toStringTree())
 				try:
 					nodes = antlr3.tree.CommonTreeNodeStream(root)
