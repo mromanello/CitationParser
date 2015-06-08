@@ -17,5 +17,9 @@ So, given the input:
 the output of the citation parser expressed in JSON is:
 	"[{'work': u'Hom. Il.', 'scp': {'start': ['1', '124'], 'end': ['1', '125']}
 	
-TODO:
-	* implement matching against a dictionary
+## Compile the ANTLR grammar files
+
+From the directory `./citation_parser/antlr/`, run:
+
+    java -cp ../../lib/antlr-3.1.2.jar org.antlr.Tool -o ~/Downloads/ cp_lexer.g cp_parser.g cp_treeparser.g
+

@@ -1,3 +1,7 @@
+#!/usr/bin/python
+# -*- coding: utf-8 -*-
+# author: Matteo Romanello, matteo.romanello@gmail.com
+
 """
 Rationale:
 
@@ -8,6 +12,12 @@ give me a new dump of the db).
 
 
 """
+
+import surf
+from surf import *
+import rdflib
+import codecs
+from citation_parser import KnowledgeBase
 
 abbreviations = [
 	("urn:cts:cwkb:431.904","Orat.")
@@ -63,3 +73,36 @@ is_opus_maximum = [
 	,"urn:cts:cwkb:539.1115" # Martial's Epigrammata
 	,"urn:cts:greekLit:tlg0003.tlg001" # Thuc. Hist.
 ]
+
+knowledge_base_rdf_file = "/Users/rromanello/Documents/APh_Corpus_GUI/cwkb/export_triples/kb-all-in-one.ttl"
+kb_addenda_file = "/Users/rromanello/Documents/APh_Corpus_GUI/cwkb/export_triples/kb-addenda.ttl"
+knowlegde_base = KnowledgeBase(knowledge_base_rdf_file, "turtle")
+
+store = Store(  reader='rdflib', writer='rdflib', rdflib_store = 'IOMemory')
+session = Session(store)
+# declare namespaces
+surf.ns.register(crm='http://erlangen-crm.org/current/')
+surf.ns.register(frbroo='http://erlangen-crm.org/efrbroo/')
+# the graph to suck in all the rdf bits
+g = rdflib.Graph()
+
+E55_Type = session.get_class(surf.ns.CRM["E55_Type"])
+F1_Work = session.get_class(surf.ns.FRBROO["F1_Work"])
+
+opMax = E55_Type("http://127.0.0.1:8000/cwkb/types#opusmaximum")
+opMax.rdfs_label = """The opux maximum of a given author:
+					hat is, the only preserved work by that
+					author or the most known one"""
+g.parse(data=opMax.serialize('xml'))
+
+for urn in is_opus_maximum:
+	uri = knowlegde_base.get_URI_by_CTS_URN(urn)
+	work = F1_Work(uri)
+	work.crm_P2_has_type = opMax
+	g.parse(data=work.serialize('xml'))
+
+ofile = codecs.open(kb_addenda_file,'w','utf-8')
+ofile.write(g.serialize(format="turtle"))
+ofile.close()
+
+

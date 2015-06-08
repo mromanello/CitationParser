@@ -1,12 +1,13 @@
-#!/usr/bin/python
+	#!/usr/bin/python
 # -*- coding: utf-8 -*-
 # author: Matteo Romanello, matteo.romanello@gmail.com
-__version__='0.2.0'
+__version__='0.4.0'
 
 from pyCTS import CTS_URN
 from operator import itemgetter
 import antlr3
 import sys
+import re
 from antlr.cp_lexer import cp_lexer
 from antlr.cp_parser import cp_parser
 from antlr.cp_treeparser import cp_treeparser
@@ -25,6 +26,10 @@ plugin.register(
     'sparql', rdflib.query.Result,
     'rdfextras.sparql.query', 'SPARQLQueryResult')
 
+import logging
+log = logging.getLogger(__name__)
+log.addHandler(logging.NullHandler())
+
 class DisambiguationNotFound(Exception):
     def __init__(self, message):
         Exception.__init__(self, message)
@@ -36,7 +41,9 @@ class KnowledgeBase(object):
 	"""
 	docstring for KnowledgeBase
 
-	TODO: test allegrordf to connect to an AG 3store via rdflib
+	TODO: 
+	* test allegrordf to connect to an AG 3store via rdflib (hard to run AG3 locally)
+	* test mysql as backend
 
 	Example:
 
@@ -48,7 +55,11 @@ class KnowledgeBase(object):
 		try:
 			assert source_file is not None and source_format is not None
 			self._graph = rdflib.Graph()
-			self._graph.parse(source_file,format=source_format)
+			if(type(source_file) == type("string")):
+				self._graph.parse(source_file,format=source_format)
+			elif(type(source_file) == type([])):
+				for file in source_file:
+					self._graph.parse(file,format=source_format)
 			print >> sys.stderr, "Loaded %i triples"%len(self._graph)
 			self._author_names = None
 			self._author_abbreviations = None
@@ -216,6 +227,17 @@ class KnowledgeBase(object):
 				language = work_title.language
 			else:
 				language = "def"
+			# TODO remove articles according to language
+			regexps = {
+				"en" : r'^the '
+				,"de" : r'^der |^die |^das '
+				,"fr" : r'^le |^la |^l\' |^les '
+				,"it" : r'^il | ^lo | ^la |^gli |^le '
+				,"def" : r''
+				,"la" : r''
+			}
+			if(language in regexps.keys()):
+				title = re.sub(regexps[language],"",title)
 			if urn is None:
 				if(work_titles.has_key(uri)):
 					work_titles[uri][language] = title
@@ -362,14 +384,49 @@ class KnowledgeBase(object):
 		query_result = list(self._graph.query(search_query))
 		return [title[0] for title in query_result]
 
-	def get_opus_maximum(self):
+	def get_opus_maximum_of(self,author_cts_urn):
 		"""
-		given the CTS URN of an author,  this method returns the CTS URN of
+		given the CTS URN of an author, this method returns the CTS URN of
 		its opus maximum. If not available returns None.
 		"""
-		pass
+		search_query = """
+		PREFIX frbroo: <http://erlangen-crm.org/efrbroo/>
+		PREFIX crm: <http://erlangen-crm.org/current/>
+		PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> 
+		PREFIX frbroo: <http://erlangen-crm.org/efrbroo/>
+		PREFIX base: <http://127.0.0.1:8000/cwkb/types#>
 		
+		SELECT ?urn	
+		WHERE {
+			?work crm:P1_is_identified_by ?work_urn .
+			?work crm:P2_has_type base:opusmaximum .
+			?work_urn a crm:E42_Identifier .
+	    	?work_urn rdfs:label ?urn .
+          	?creation frbroo:R16_initiated ?work .
+          	?author frbroo:P14i_performed ?creation .
+          	?author crm:P1_is_identified_by ?author_urn .
+          	?author_urn a crm:E42_Identifier .
+          	?author_urn rdfs:label  "%s".
+	    }
+		"""%author_cts_urn
+		query_result = list(self._graph.query(search_query))
+		try:
+			return query_result[0][0]
+		except Exception, e:
+			return None
 
+	def validate():
+		pass
+
+	def describe(cts_urn, language="en"):
+		"""
+		TODO: given a CTS URN, return a description
+		Return a tuple where:
+			result[0] is the label
+			result[1] is the language of the label
+		"""
+		pass
+				
 class CitationParser:
 	"""
 	This class is a wrapper for the different components of the CitationParser, i.e. lexer, parser and tree parser.
@@ -420,26 +477,21 @@ class CitationMatcher(object):
 	Example:
 
 	>>> kb = KnowledgeBase("/Users/rromanello/Documents/APh_Corpus_GUI/cwkb/export_triples/kb-all-in-one.ttl", "turtle")
-	>>> authornames = kb.author_names
-	>>> worktitles = kb.work_titles
-	>>> authorabbreviations = kb.author_abbreviations
-	>>> workabbreviations = kb.work_abbreviations
-	>>> cm = CitationMatcher(authornames, worktitles, authorabbreviations, workabbreviations)
+	>>> cm = CitationMatcher(kb)
 	>>> citation_urn = cm.disambiguate("Hom. Il.","1.100")
 	
 	"""
-	def __init__(self, author_names, work_titles, author_abbreviations, work_abbreviations):
+	def __init__(self, knowledge_base):
 		super(CitationMatcher, self).__init__()
 		try:
 			self._citation_parser = CitationParser()
-			assert (author_names is not None and work_titles is not None and author_abbreviations is not None and work_abbreviations is not None)
-			self._author_names = author_names
-			self._work_titles = work_titles
-			self._author_abbreviations = author_abbreviations
-			self._work_abbreviations = work_abbreviations
+			self._kb = knowledge_base
+			self._author_names = knowledge_base.author_names
+			self._work_titles = knowledge_base.work_titles
+			self._author_abbreviations = knowledge_base.author_abbreviations
+			self._work_abbreviations = knowledge_base.work_abbreviations
 			self._author_idx, self._author_abbr_idx, self._work_idx, self._work_abbr_idx = self._initialise_indexes()
 		except Exception, e:
-			# insufficient number of
 			raise e
 
 	def _initialise_indexes(self):
@@ -490,8 +542,27 @@ class CitationMatcher(object):
 			abbr_matches = [(id.split("$$")[0], self._author_abbreviations[id], len(self._author_abbreviations[id])-len(string)) for id in self._author_abbr_idx.searchAllWords(string)]
 		else:
 			from nltk.metrics import edit_distance
-			author_matches = [(id.split("$$")[0], self._author_names[id], edit_distance(string,self._author_names[id])) for id in self._author_names if edit_distance(string,self._author_names[id]) <= distance_threshold]
 			abbr_matches = [(id.split("$$")[0], self._author_abbreviations[id], edit_distance(string,self._author_abbreviations[id])) for id in self._author_abbreviations if edit_distance(string,self._author_abbreviations[id]) <= distance_threshold]
+			abbr_matches = sorted(abbr_matches, key =itemgetter(2))
+			author_matches = []
+			for id in self._author_names:
+				if(string.endswith(".")):
+					if string.replace(".","") in self._author_names[id]:
+						if(len(string)>(len(self._author_names[id])/2)):
+							try:
+								assert abbr_matches[0][2]==0
+								distance = len(self._author_names[id])-len(string)
+								if distance < 0:
+									distance = 1
+								author_matches.append((id.split("$$")[0], self._author_names[id],distance))
+							except Exception, e:
+								author_matches.append((id.split("$$")[0], self._author_names[id],0))
+						else:
+							if(edit_distance(string,self._author_names[id]) <= distance_threshold):
+								author_matches.append((id.split("$$")[0], self._author_names[id], edit_distance(string,self._author_names[id])))
+				else:
+					if(edit_distance(string,self._author_names[id]) <= distance_threshold):
+						author_matches.append((id.split("$$")[0], self._author_names[id], edit_distance(string,self._author_names[id])))
 		if(len(author_matches)>0 or len(abbr_matches)>0):
 			return sorted(author_matches + abbr_matches, key =itemgetter(2))
 		else:
@@ -530,9 +601,13 @@ class CitationMatcher(object):
 					, scope
 					, n_guess=1
 					, validate = False
+					, fuzzy = False
+					, distance_threshold=3
 					, use_context = False
 					, entities_before = None
-					, entities_after = None):
+					, entities_after = None
+					, cleanup = False
+					):
 		"""
 		Args:
 			citation_string:
@@ -543,13 +618,27 @@ class CitationMatcher(object):
 				number of guesses that should be returned
 				if n_guess > 1, they are returned as ordered list, with
 				the most likely candidate first and the least likely last.
-
 		Returns:
 			a list of pyCTS.CTS_URN objects.
 
 		Example:
 			>>> cm.disambiguate("Hom. Il.","1.100")
 		"""
+		def longestSubstringFinder(string1, string2):
+			"""
+			solution taken from http://stackoverflow.com/questions/18715688/find-common-substring-between-two-strings
+			"""
+			answer = ""
+			len1, len2 = len(string1), len(string2)
+			for i in range(len1):
+				match = ""
+				for j in range(len2):
+					if (i + j < len1 and string1[i + j] == string2[j]):
+						match += string2[j]
+					else:
+						if (len(match) > len(answer)): answer = match
+						match = ""
+			return answer
 		match = []
 		try:
 			normalized_scope = self._citation_parser.parse(scope)
@@ -559,11 +648,26 @@ class CitationMatcher(object):
 
 		# citation string has one single token
 		if(len(citation_string.split(" "))==1):
-			match = self.matches_work(citation_string)
-			if match is None:
-				match = self.matches_author(citation_string)
+			match = self.matches_work(citation_string,fuzzy,distance_threshold)
+			# TODO this is problematic
+			# should be: match is None or match does not contain at least one entry with distance=0
+			zero_distance_match = False
+			if(match is not None):
+				for m in match:
+					if(m[2]==0):
+						zero_distance_match = True
+			print fuzzy
+			print citation_string
+			print "zero distance match is %s"%zero_distance_match
+			if match is None or not zero_distance_match:
+			#if match is None:
+				try:
+					match = self.matches_author(citation_string,fuzzy,distance_threshold)
+				except Exception, e:
+					raise e
 			if match is not None:
-				match = [(id,name,diff) for id, name, diff in match if diff == 0][:n_guess] # this has to be removed
+				#match = [(id,name,diff) for id, name, diff in match if diff == 0][:n_guess] # this has to be removed
+				pass
 			else:
 				# fuzzy matching as author
 				# then fuzzy matching as work
@@ -574,8 +678,8 @@ class CitationMatcher(object):
 			tok1 = citation_string.split(" ")[0]
 			tok2 = citation_string.split(" ")[1]
 			# case 1: tok1 is author and tok2 is work
-			match_tok1 = self.matches_author(tok1)
-			match_tok2 = self.matches_work(tok2)
+			match_tok1 = self.matches_author(tok1,fuzzy,distance_threshold)
+			match_tok2 = self.matches_work(tok2,fuzzy,distance_threshold)
 			#print >> sys.stderr, match_tok1
 			#print >> sys.stderr, match_tok2
 			if(match_tok1 is not None and match_tok2 is not None):
@@ -587,31 +691,58 @@ class CitationMatcher(object):
 							break
 			else:
 				# case 2: tok1 and tok2 are author
-				match = self.matches_author(citation_string)
+				match = self.matches_author(citation_string,fuzzy,distance_threshold)
 				if match is None:
 					# case 3: tok1 and tok2 are work
-					match = self.matches_work(citation_string)
+					match = self.matches_work(citation_string,fuzzy,distance_threshold)
 				else:
 					# take this
 					pass
 		# citation string has more than two tokens
 		elif(len(citation_string.split(" "))>2):
-			match = self.matches_author(citation_string)
-
+			match = self.matches_author(citation_string,fuzzy,distance_threshold)
+		# TODO
 		if(not use_context):
 			pass
 		else:
 			pass
-
 		# return only n_guess results
 		if(match is None or len(match)==0):
 			raise DisambiguationNotFound("For the string \'%s\' no candidates for disambiguation were found!"%citation_string)
 		elif(len(match)<= n_guess):
 			print >> sys.stderr, "There are %i results and `n_guess`==%i. Nothing to cut."%(len(match),n_guess)
-			pass
 		elif(len(match)> n_guess):
-			match = match[:n_guess]
-		return [CTS_URN("%s:%s"%(id, self._format_scope(normalized_scope[0]['scp']))) for id, label, score in match]
-
-	def validate():
-		pass
+			# iterate and get what's the lowest ed_score
+			# then keep only the matches with lowest (best) score
+			# then keep the one with longest common string
+			lowest_score = 1000
+			for m in match:
+			    score = m[2]
+			    if(score < lowest_score):
+			        lowest_score = score
+			filtered_matches = [m for m in match if m[2]==lowest_score]
+			best_match = ("",None)
+			if(lowest_score > 0):
+				for match in filtered_matches:
+				    lcs = longestSubstringFinder(match[1],citation_string)
+				    if(len(lcs)>len(best_match[0])):
+				        best_match = (lcs,match)
+				match = [best_match[1]]
+				print match
+			else:
+				# TODO: use context here to disambiguate
+				match = match[:n_guess]
+		results = []
+		for id, label, score in match:
+			formatted_scope = self._format_scope(normalized_scope[0]['scp'])
+			urn = CTS_URN("%s:%s"%(id, formatted_scope))
+			# check: does the URN has a scope but is missing the work element (not possible)?
+			if(urn.work is None):
+				# if so, try to get the opus maximum from the KB
+				opmax = self._kb.get_opus_maximum_of(urn.get_urn_without_passage())
+				if(opmax is not None):
+					print >> sys.stderr, "%s is opus maximum of %s"%(opmax,urn)
+					urn = CTS_URN("%s:%s"%(opmax,formatted_scope))
+			results.append(urn)
+		print >> sys.stderr,results
+		return results
