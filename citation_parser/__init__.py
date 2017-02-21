@@ -1,7 +1,7 @@
-	#!/usr/bin/python
+#!/usr/bin/python
 # -*- coding: utf-8 -*-
 # author: Matteo Romanello, matteo.romanello@gmail.com
-__version__='0.4.1'
+#__version__='0.4.1'
 
 from pyCTS import CTS_URN
 from operator import itemgetter
