@@ -28,7 +28,7 @@ setup(name=NAME,
     packages=find_packages(),
     include_package_data=True,
     #package_data={'citation_parser': ['data/*.*']},
-    long_description=read('README.md'),
+    long_description=read('README.rst'),
     install_requires=['pyCTS', 'antlr-python-runtime'],
     zip_safe=False,
 )
