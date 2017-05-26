@@ -1,6 +1,12 @@
 CitationParser
 ==============
 
+.. image:: https://badge.fury.io/py/citation-parser.svg
+    :target: https://badge.fury.io/py/citation-parser
+
+.. image:: https://travis-ci.org/mromanello/CitationParser.svg?branch=master
+    :target: https://travis-ci.org/mromanello/CitationParser
+
 Canonical references (e.g. "Hom. *Il.* 1,124-125") use punctuation symbols in a consistent way, meaning that we can define a formal grammar to process them. 
 
 When encountering the reference "Hom. *Il.* 1,124-125", the human reader will parse it as follows:
